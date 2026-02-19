@@ -1,0 +1,112 @@
+<div class="supplier-container">
+
+  <div class="table-card">
+
+    <div class="table-header">
+      <h3>Supplier List</h3>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- CODE -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Code </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.code }}
+        </td>
+      </ng-container>
+
+      <!-- NAME -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.name }}
+        </td>
+      </ng-container>
+
+      <!-- PHONE -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef> Phone </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.phone }}
+        </td>
+      </ng-container>
+
+      <!-- EMAIL -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.email }}
+        </td>
+      </ng-container>
+
+      <!-- ADDRESS -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.address }}
+        </td>
+      </ng-container>
+
+      <!-- CITY -->
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> City </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.city }}
+        </td>
+      </ng-container>
+
+      <!-- NOTES -->
+      <ng-container matColumnDef="notes">
+        <th mat-header-cell *matHeaderCellDef> Notes </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.notes }}
+        </td>
+      </ng-container>
+
+      <!-- ACTIVE -->
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef class="center-col">
+          Active
+        </th>
+        <td mat-cell *matCellDef="let element" class="center-col">
+
+          <mat-slide-toggle
+            color="primary"
+            [checked]="element.isActive"
+            (change)="toggleStatus(element)">
+          </mat-slide-toggle>
+
+        </td>
+      </ng-container>
+
+      <!-- ACTION -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="center-col">
+          Action
+        </th>
+        <td mat-cell *matCellDef="let element" class="center-col">
+
+          <button mat-icon-button
+                  color="warn"
+                  (click)="deleteSupplier(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[15,20,30]"
+      showFirstLastButtons>
+    </mat-paginator>
+
+  </div>
+
+</div>

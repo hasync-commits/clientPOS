@@ -1,0 +1,49 @@
+<mat-toolbar class="navbar">
+
+  <span class="logo">Mobile POS</span>
+
+  <span class="spacer"></span>
+
+  <!-- SUPPLIER MENU -->
+  <button mat-button [matMenuTriggerFor]="supplierMenu">
+    Supplier
+  </button>
+
+  <mat-menu #supplierMenu="matMenu">
+    <button mat-menu-item (click)="navigate('supplierOrder')">
+      Supplier Order
+    </button>
+    <button mat-menu-item (click)="navigate('supplierList')">
+      Supplier List
+    </button>
+  </mat-menu>
+
+  <!-- SALES MENU -->
+  <button mat-button [matMenuTriggerFor]="salesMenu">
+    Sales
+  </button>
+
+  <mat-menu #salesMenu="matMenu">
+    <button mat-menu-item>
+      New Sale
+    </button>
+    <button mat-menu-item>
+      Sales List
+    </button>
+  </mat-menu>
+
+  <!-- PRODUCTS MENU -->
+  <button mat-button [matMenuTriggerFor]="productMenu">
+    Products
+  </button>
+
+  <mat-menu #productMenu="matMenu">
+    <button mat-menu-item>
+      Add Product
+    </button>
+    <button mat-menu-item>
+      Product List
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

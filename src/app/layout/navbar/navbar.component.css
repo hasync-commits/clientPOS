@@ -1,0 +1,23 @@
+.navbar {
+  background-color: #297ef5;
+  color: #ffffff;
+  height: 64px;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button {
+  color: #000000;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}

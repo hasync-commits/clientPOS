@@ -1,0 +1,77 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Remove outer spacing */
+.supplier-container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Card */
+.table-card {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  background: #ffffff;
+}
+
+/* Header */
+.table-header {
+  padding: 8px 12px; /* reduced again */
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
+}
+
+.table-header h3 {
+  margin: 8px;
+  font-weight: 500;
+  font-size: 16px; /* reduced */
+}
+
+/* Table */
+table {
+  width: 100%;
+}
+
+th {
+  font-weight: 500;
+  font-size: 13px; /* reduced */
+}
+
+td {
+  font-size: 11px; /* reduced */
+}
+
+/* Reduce row height further */
+td, th {
+  padding: 6px 10px; /* reduced */
+}
+
+/* Compact hover */
+tr:hover {
+  background-color: #f2f4f7;
+}
+
+/* Center columns */
+.center-col {
+  text-align: center;
+}
+
+/* Smaller slide toggle */
+::ng-deep .mat-mdc-slide-toggle {
+  transform: scale(0.75);
+}
+
+/* Compact paginator */
+mat-paginator {
+  font-size: 11px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Add extra left padding only for first column */
+.mat-column-code {
+  padding-left: 24px !important;
+}
