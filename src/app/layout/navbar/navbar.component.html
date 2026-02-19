@@ -20,15 +20,15 @@
 
   <!-- SALES MENU -->
   <button mat-button [matMenuTriggerFor]="salesMenu">
-    Sales
+    Purchase
   </button>
 
   <mat-menu #salesMenu="matMenu">
-    <button mat-menu-item>
-      New Sale
+    <button mat-menu-item (click)="navigate('purchaseOrder')">
+      New Purchase
     </button>
-    <button mat-menu-item>
-      Sales List
+    <button mat-menu-item (click)="navigate('purchaseList')">
+      Purchase History
     </button>
   </mat-menu>
 

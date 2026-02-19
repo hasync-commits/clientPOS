@@ -1,0 +1,72 @@
+.purchase-wrapper {
+  padding: 20px;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.card-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+mat-card {
+  padding: 20px;
+  border-radius: 12px;
+}
+
+mat-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 240px 180px 180px 120px 100px 100px 100px 40px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item-row mat-form-field {
+  width: 100%;
+  font-size: 12px;
+}
+
+.header-row {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.summary {
+  margin-top: 25px;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.summary mat-form-field {
+  width: 160px;
+}
+
+.action-buttons {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+}

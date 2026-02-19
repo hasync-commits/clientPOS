@@ -1,0 +1,190 @@
+<div class="purchase-wrapper">
+
+  <mat-tab-group>
+
+    <!-- CREATE PURCHASE -->
+    <mat-tab label="Purchase Order">
+
+      <div class="card-container">
+
+        <mat-card>
+
+          <mat-card-title>Create Purchase</mat-card-title>
+
+          <mat-card-content>
+
+            <form [formGroup]="purchaseForm">
+
+              <!-- Header Section -->
+              <div class="header-grid">
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Supplier</mat-label>
+                  <mat-select formControlName="supplierId">
+                    <mat-option *ngFor="let s of suppliers" [value]="s._id">
+                      {{ s.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="purchaseForm.get('supplierId')?.invalid">
+                    Supplier is required
+                  </mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Invoice Number</mat-label>
+                  <input matInput formControlName="invoiceNumber">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Purchase Date</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="purchaseDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+              </div>
+
+              <h3>Products</h3>
+
+              <div class="button-group">
+                <button mat-raised-button color="primary" type="button" (click)="addItem()">
+                  Add Product
+                </button>
+
+                <button mat-raised-button color="warn" type="button"
+                        (click)="removeAll()" *ngIf="items.length > 0">
+                  Remove All
+                </button>
+              </div>
+
+              <!-- Header Row -->
+              <div class="item-row header-row">
+                <strong>Name</strong>
+                <strong>Category</strong>
+                <strong>Brand</strong>
+                <strong>Cost</strong>
+                <strong>Selling</strong>
+                <strong>Qty</strong>
+                <strong>Total</strong>
+                <span></span>
+              </div>
+
+              <div formArrayName="items">
+
+                <div *ngFor="let item of items.controls; let i = index"
+                     [formGroupName]="i"
+                     class="item-row">
+
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Name"
+                           formControlName="productName">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Category"
+                           formControlName="category">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Brand"
+                           formControlName="brand">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <input matInput type="number"
+                           placeholder="Cost"
+                           formControlName="costPrice">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <input matInput type="number"
+                           placeholder="Selling"
+                           formControlName="sellingPrice">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <input matInput type="number"
+                           placeholder="Qty"
+                           formControlName="quantity">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                           placeholder="Total"
+                           formControlName="itemTotal"
+                           readonly>
+                  </mat-form-field>
+
+                  <button mat-icon-button color="warn"
+                          type="button"
+                          (click)="removeItem(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+
+                </div>
+
+              </div>
+
+              <!-- Summary -->
+              <div class="summary">
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Subtotal</mat-label>
+                  <input matInput formControlName="subtotal" readonly>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Total Discount</mat-label>
+                  <input matInput type="number" formControlName="totalDiscount">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Grand Total</mat-label>
+                  <input matInput formControlName="grandTotal" readonly>
+                </mat-form-field>
+
+              </div>
+
+              <!-- Buttons -->
+              <div class="action-buttons">
+                <button mat-raised-button color="accent"
+                        type="button"
+                        (click)="saveDraft()">
+                  Save Draft
+                </button>
+
+                <button mat-raised-button color="primary"
+                        type="button"
+                        (click)="confirmPurchase()">
+                  Confirm Purchase
+                </button>
+              </div>
+
+            </form>
+
+          </mat-card-content>
+
+        </mat-card>
+
+      </div>
+
+    </mat-tab>
+
+    <!-- PURCHASE LIST -->
+    <mat-tab label="Purchase List">
+      <div class="card-container">
+        Purchase list will be implemented later.
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Draft Purchases">
+      <div class="card-container">
+        Draft purchases will be implemented later.
+      </div>
+    </mat-tab>    
+
+
+  </mat-tab-group>
+
+</div>
