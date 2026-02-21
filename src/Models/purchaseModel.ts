@@ -1,3 +1,5 @@
+import { Supplier } from "./supplierModel";
+
 export interface PurchaseItem {
 
   productName: string;
@@ -18,7 +20,7 @@ export interface Purchase {
   _id?: string;
   purchaseCode?: string;
 
-  supplierId: string;
+  supplierId: string | Supplier;
   invoiceNumber?: string;
 
   purchaseDate: Date;

@@ -1,1 +1,208 @@
-<p>purchase-report works!</p>
+<div class="report-wrapper">
+
+  <!-- SUMMARY -->
+  <div class="summary-strip">
+
+    <div class="summary-card">
+      <div>Total Purchases</div>
+      <h3>{{ totalPurchases }}</h3>
+    </div>
+
+    <div class="summary-card">
+      <div>Confirmed</div>
+      <h3>{{ totalConfirmed }}</h3>
+    </div>
+
+    <div class="summary-card">
+      <div>Draft</div>
+      <h3>{{ totalDraft }}</h3>
+    </div>
+
+    <div class="summary-card">
+      <div>Total Items Quantity</div>
+      <h3>{{ totalItems }}</h3>
+    </div>
+
+    <div class="summary-card highlight">
+      <div>Total Amount</div>
+      <h3>{{ totalAmount | number:'1.2-2' }}</h3>
+    </div>
+
+  </div>
+
+  <!-- QUICK FILTERS -->
+  <div class="quick-filters">
+
+    <button mat-stroked-button
+            [class.active-btn]="activePeriod === 'daily'"
+            (click)="togglePeriod('daily')">
+      Today
+    </button>
+
+    <button mat-stroked-button
+            [class.active-btn]="activePeriod === 'weekly'"
+            (click)="togglePeriod('weekly')">
+      This Week
+    </button>
+
+    <button mat-stroked-button
+            [class.active-btn]="activePeriod === 'monthly'"
+            (click)="togglePeriod('monthly')">
+      This Month
+    </button>
+
+    <button mat-stroked-button
+            [class.active-btn]="statusFilter === 'confirmed'"
+            (click)="toggleStatus('confirmed')">
+      Confirmed Only
+    </button>
+
+    <button mat-stroked-button
+            color="warn"
+            [class.active-btn]="statusFilter === 'draft'"
+            (click)="toggleStatus('draft')">
+      Draft Only
+    </button>
+
+    <span class="spacer"></span>
+
+    <button mat-button (click)="expandAll()">Expand All</button>
+    <button mat-button (click)="collapseAll()">Collapse All</button>
+
+  </div>
+
+  <mat-card class="report-card">
+
+    <!-- FILTERS -->
+    <div class="filter-section">
+      <form [formGroup]="filterForm" class="filter-grid">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Supplier</mat-label>
+          <mat-select formControlName="supplierId">
+            <mat-option value="">All</mat-option>
+            <mat-option *ngFor="let s of suppliers" [value]="s._id">
+              {{ s.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>From</mat-label>
+          <input matInput [matDatepicker]="fromPicker" formControlName="from">
+          <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+          <mat-datepicker #fromPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>To</mat-label>
+          <input matInput [matDatepicker]="toPicker" formControlName="to">
+          <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+          <mat-datepicker #toPicker></mat-datepicker>
+        </mat-form-field>
+
+        <div class="filter-actions">
+          <button mat-raised-button color="primary"
+                  (click)="applyFilters()">
+            Apply
+          </button>
+
+          <button mat-stroked-button color="warn"
+                  (click)="resetFilters()">
+            Reset
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- LIST -->
+    <mat-accordion multi="true">
+
+      <mat-expansion-panel *ngFor="let purchase of purchases">
+
+        <mat-expansion-panel-header>
+
+          <mat-panel-title>
+            {{ purchase.purchaseCode }}
+            —
+            {{ getSupplierName(purchase) }}
+            • {{ purchase.items.length }} items
+          </mat-panel-title>
+
+          <mat-panel-description>
+            <mat-chip
+              [color]="purchase.status === 'confirmed' ? 'primary' : 'warn'"
+              selected>
+              {{ purchase.status }}
+            </mat-chip>
+
+            <span class="amount">
+              {{ purchase.grandTotal | number:'1.2-2' }}
+            </span>
+          </mat-panel-description>
+
+        </mat-expansion-panel-header>
+
+        <!-- ACTIONS -->
+        <div class="panel-actions">
+
+          <button mat-stroked-button color="primary"
+                  (click)="printPurchase()">
+            Print
+          </button>
+
+          <div *ngIf="purchase.status === 'draft'">
+            <button mat-raised-button color="primary"
+                    (click)="confirmPurchase(purchase)">
+              Confirm
+            </button>
+
+            <button mat-stroked-button color="warn"
+                    (click)="deletePurchase(purchase)">
+              Delete
+            </button>
+          </div>
+
+        </div>
+
+        <!-- ITEMS TABLE -->
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Brand</th>
+              <th>Cost</th>
+              <th>Sell</th>
+              <th>Qty</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of purchase.items">
+              <td>{{ item.productName }}</td>
+              <td>{{ item.category }}</td>
+              <td>{{ item.brand }}</td>
+              <td>{{ item.costPrice }}</td>
+              <td>{{ item.sellingPrice }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.itemTotal }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="purchase-footer">
+          <div>Subtotal: {{ purchase.subtotal }}</div>
+          <div>Discount: {{ purchase.totalDiscount }}</div>
+          <div><strong>Grand Total: {{ purchase.grandTotal }}</strong></div>
+        </div>
+
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </mat-card>
+
+</div>

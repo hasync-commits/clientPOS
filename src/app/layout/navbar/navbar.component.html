@@ -49,4 +49,15 @@
     </button>
   </mat-menu>
 
+  <!-- REPORTS MENU -->
+  <button mat-button [matMenuTriggerFor]="reportsMenu">
+    Reports
+  </button>
+
+  <mat-menu #reportsMenu="matMenu">
+    <button mat-menu-item (click)="navigate('purchaseReport')">
+      Purchase Report
+    </button>
+  </mat-menu>  
+
 </mat-toolbar>
