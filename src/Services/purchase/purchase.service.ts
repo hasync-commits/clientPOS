@@ -9,7 +9,7 @@ import { environment as testingEnvironment } from '../../environment/testingEnvi
 })
 export class PurchaseService {
   
-  private testingBaseUrl = testingEnvironment.testingBaseUrl + '/suppliers';
+  private testingBaseUrl = testingEnvironment.testingBaseUrl + '/purchases';
 
   constructor(private http: HttpClient) { }
 
@@ -106,6 +106,37 @@ export class PurchaseService {
   }
 
 
+getPurchases(filters?: {
+  status?: string;
+  supplierId?: string;
+  from?: string;
+  to?: string;
+  period?: string;
+}): Observable<Purchase[]> {
 
+  let params = new HttpParams();
+
+  if (filters) {
+
+    if (filters.status) {
+      params = params.set('status', filters.status);
+    }
+
+    if (filters.supplierId) {
+      params = params.set('supplierId', filters.supplierId);
+    }
+
+    if (filters.period) {
+      params = params.set('period', filters.period);
+    }
+
+    if (filters.from && filters.to) {
+      params = params.set('from', filters.from);
+      params = params.set('to', filters.to);
+    }
+  }
+
+  return this.http.get<Purchase[]>(this.testingBaseUrl, { params });
+}
 
 }

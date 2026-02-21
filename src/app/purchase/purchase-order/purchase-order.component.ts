@@ -22,9 +22,11 @@ import { SupplierService } from '../../../Services/supplier/supplier.service';
 import { PurchaseService } from '../../../Services/purchase/purchase.service';
 import { Purchase } from '../../../Models/purchaseModel';
 
+import { PurchaseListComponent } from '../purchase-list/purchase-list.component';
+
 @Component({
   selector: 'app-purchase-order',
-  imports: [CommonModule, MatCardModule, ReactiveFormsModule, MatTabsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatDatepickerModule, MatNativeDateModule],
+  imports: [CommonModule, PurchaseListComponent, MatCardModule, ReactiveFormsModule, MatTabsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatDatepickerModule, MatNativeDateModule],
   templateUrl: './purchase-order.component.html',
   styleUrl: './purchase-order.component.css'
 })

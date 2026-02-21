@@ -1,0 +1,46 @@
+.purchase-wrapper {
+  padding: 20px;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+mat-card {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+table {
+  width: 100%;
+}
+
+.confirmed {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.draft {
+  color: #f57c00;
+  font-weight: 600;
+}
