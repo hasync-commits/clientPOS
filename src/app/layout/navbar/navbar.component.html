@@ -19,33 +19,30 @@
   </mat-menu>
 
   <!-- PURCHASE MENU -->
-  <button mat-button [matMenuTriggerFor]="salesMenu">
+  <button mat-button [matMenuTriggerFor]="purchaseMenu">
     Purchase
   </button>
 
-  <mat-menu #salesMenu="matMenu">
+  <mat-menu #purchaseMenu="matMenu">
     <button mat-menu-item (click)="navigate('purchaseOrder')">
       New Purchase
     </button>
     <button mat-menu-item (click)="navigate('purchaseList')">
       Purchase List
     </button>
-    <button mat-menu-item (click)="navigate('purchaseList')">
-      Purchase History
-    </button>
   </mat-menu>
 
-  <!-- PRODUCTS MENU -->
-  <button mat-button [matMenuTriggerFor]="productMenu">
-    Products
+  <!-- SALES MENU -->
+  <button mat-button [matMenuTriggerFor]="salesMenu">
+    Sales
   </button>
 
-  <mat-menu #productMenu="matMenu">
-    <button mat-menu-item>
-      Add Product
+  <mat-menu #salesMenu="matMenu">
+    <button mat-menu-item (click)="navigate('saleOrder')">
+      New Sale
     </button>
-    <button mat-menu-item>
-      Product List
+    <button mat-menu-item (click)="navigate('salesList')">
+      Sales List
     </button>
   </mat-menu>
 
